@@ -19,6 +19,7 @@ namespace BrothersSafeGame1
         private int _columnCount;
         private int _buttonSize;
         private Button[,] _buttons;
+        private static Random _random = new Random();
 
         public SafeGame(int rowCount, int columnCount)
         {
@@ -53,7 +54,13 @@ namespace BrothersSafeGame1
                     button.Name = i + " " + j;
                     button.Size = new Size(_buttonSize, _buttonSize);
                     button.Location = new Point(j * _buttonSize, i * _buttonSize);
-                    button.Image = _handleX;
+                    int randomPosition = _random.Next(2);
+
+                    if (randomPosition == 1)
+                        button.Image = _handleX;
+                    else
+                        button.Image = _handleY;
+
                     _buttons[i, j] = button;
                     Controls.Add(button);
                 }
