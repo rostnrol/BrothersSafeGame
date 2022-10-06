@@ -16,7 +16,7 @@ namespace BrothersSafeGame1
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new SafeGame(4, 4));
+            Application.Run(new SafeGame(3, 3));
         }
     }
 }

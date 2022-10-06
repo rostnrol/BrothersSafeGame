@@ -29,7 +29,7 @@ namespace BrothersSafeGame1
 
             _rowCount = rowCount;
             _columnCount = columnCount;
-            
+
             _buttons = new Button[_rowCount, _columnCount];
 
             InitializeComponent();
@@ -67,14 +67,35 @@ namespace BrothersSafeGame1
             }
         }
 
+        private void CheckButtons()
+        {
+            int similarButtonsXCount = 0;
+            int similarButtonsYCount = 0;
+
+            for (int i = 0; i < _rowCount; i++)
+            {
+                for (int j = 0; j < _columnCount; j++)
+                {
+                    if (_buttons[i, j].Image == _handleX)
+                        similarButtonsXCount++;
+                    else
+                        similarButtonsYCount++;
+                }
+            }
+
+            if (similarButtonsXCount == 0 || similarButtonsYCount == 0)
+                MessageBox.Show("Thes safe is opened! Victory!!!");
+        }
+
+
         private void PlayGame()
         {
             for (int i = 0; i < _rowCount; i++)
             {
                 for (int j = 0; j < _columnCount; j++)
-                {             
-                        _buttons[i, j].Click += new EventHandler(OnButtonProceed);
-                        _buttons[i, j].Enabled = true;
+                {
+                    _buttons[i, j].Click += new EventHandler(OnButtonProceed);
+                    _buttons[i, j].Enabled = true;
                 }
             }
         }
@@ -111,6 +132,7 @@ namespace BrothersSafeGame1
             else
                 _buttons[buttonX, buttonY].Image = _handleX;
 
+            CheckButtons();
         }
     }
 }
